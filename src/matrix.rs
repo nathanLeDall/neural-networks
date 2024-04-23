@@ -33,6 +33,24 @@ impl Matrix{
 		}
 		res
 	}
+	pub fn rand_matrix_xavier(c: usize , r: usize,  n_in: usize, n_out: usize) -> Matrix {
+		let mut var:f64 = 1.0/((n_in+n_out) as f64);
+		var = var.sqrt();
+		let mut rng = rand::thread_rng();
+
+		let mut res = Matrix{
+			columns: c,
+			rows: r,
+			data: vec![vec![0.0; c]; r],
+		};
+
+		for i in 0..r{
+			for j in 0..c{
+				res.data[i][j] = rng.gen::<f64>() * (2.0 * var) - var;
+			}
+		}
+		res
+	}
 	pub fn dot_mul(&self, other: &Matrix) -> Matrix{
 		if self.columns != other.rows {
 			panic!("rows not equal columns");

@@ -26,7 +26,9 @@ impl Network<'_>{
 		let mut weights = vec![];
 		let mut biases = vec![];
 		for i in 0..layers.len()-1{
-			weights.push(Matrix::rand_matrix(layers[i],layers[i+1]));
+			let matrix = Matrix::rand_matrix_xavier(layers[i],layers[i+1],layers[i],layers[i+1]);
+			println!("{:?}",matrix.data);
+			weights.push(matrix);
 			biases.push(Matrix::rand_matrix(1, layers[i+1]));
 		}
 		Network{
@@ -69,15 +71,17 @@ impl Network<'_>{
 			gradient = self.data[i].map(self.activation.derivative);
 		}
 	}
-	pub fn train(&mut self, input: Vec<Vec<f64>>, targets: Vec<Vec<f64>>, epoch: u32) {
+	pub fn train(&mut self, input: Vec<Vec<f64>>, targets: Vec<Vec<f64>>, epoch: u32, target_lr: f64) {
+		let learn_change = (self.learning_rate - target_lr) / epoch as f64;
 		for i in 1..=epoch{
 			if epoch<100 || i%(epoch/100) == 0{
-				println! ("epoch {} of {}", i, epoch);
+				//println! ("epoch {} of {}", i, epoch);
 			}
 			for j in 0..input.len(){
 				let outputs = self.feed_forward(input[j].clone());
 				self.back_prob(outputs, targets[j].clone());
 			}
+			self.learning_rate -= learn_change;
 		}
 	}
 }

@@ -1,0 +1,12 @@
+do likedin course and kube academy course
+make a little slide show for next monday
+
+go on trello board and say what we talked about today so intro to networking 
+and then what we will talk about next monday so likedin course and kubeacademy course with a little slide show
+
+links
+https://www.kloia.com/blog/why-do-we-use-cni-plugins-on-kubernetes#:~:text=CNI%20plugins%20work%20on%20different,or%20Layer%204%20based%20CNIs
+https://ubuntu.com/kubernetes/docs/cni-calico
+https://antrea.io/
+https://www.linkedin.com/learning/networking-foundations-networking-basics/welcome-to-the-network
+https://kube.academy/courses/networking-in-kubernetes
